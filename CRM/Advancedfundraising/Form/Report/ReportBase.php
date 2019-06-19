@@ -3246,7 +3246,9 @@ WHERE cg.extends IN ('" . implode("','", $extends) . "') AND
       'phone_from_contact' => array(
         'leftTable' => 'civicrm_contact',
         'rightTable' => 'civicrm_phone',
-        'callback' => 'joinPhoneFromContact',
+        'callback' => '
+        
+        ',
       ),
       'latestactivity_from_contact' => array(
         'leftTable' => 'civicrm_contact',
@@ -3382,7 +3384,7 @@ WHERE cg.extends IN ('" . implode("','", $extends) . "') AND
    * Add join from contact table to phone. Prefix will be added to both tables
   * as it's assumed you are using it to get address of a secondary contact
   */
-  function joinPhoneFromContact( $prefix = '') {
+  protected function joinPhoneFromContact($prefix = '', $extra = []) {
     $this->_from .= " LEFT JOIN civicrm_phone {$this->_aliases[$prefix . 'civicrm_phone']}
     ON {$this->_aliases[$prefix . 'civicrm_phone']}.contact_id = {$this->_aliases[$prefix . 'civicrm_contact']}.id";
   }
